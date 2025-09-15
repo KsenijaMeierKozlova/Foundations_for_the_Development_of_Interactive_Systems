@@ -1,0 +1,19 @@
+p {
+    color: grey;
+    text-transform: uppercase;
+}
+
+.highlight {
+    border: 2px dotted black;
+    letter-spacing: 5px;
+}
+
+#special {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+a:hover {
+    color: green;
+    text-decoration: none;
+}
