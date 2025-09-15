@@ -1,10 +1,12 @@
 p {
     color: grey;
     text-transform: uppercase;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .highlight {
-    border: 2px dotted black;
+    border: 2px dotted pink;
     letter-spacing: 5px;
 }
 
