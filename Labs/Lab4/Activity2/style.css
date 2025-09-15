@@ -6,16 +6,19 @@ p {
 }
 
 .highlight {
-    border: 2px dotted pink;
+    border: 2px dotted rgb(190, 78, 255);
     letter-spacing: 5px;
+    padding: 10px;
 }
 
 #special {
     text-decoration: underline;
     font-style: italic;
+    margin-left: 10px;
 }
 
 a:hover {
-    color: green;
+    color: #007d70;
     text-decoration: none;
+    background-color: rgba(130, 235, 100, 0.5);
 }
