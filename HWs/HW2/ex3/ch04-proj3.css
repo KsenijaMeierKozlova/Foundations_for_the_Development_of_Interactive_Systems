@@ -1,0 +1,157 @@
+* {
+   box-sizing: border-box;
+}
+
+body, section, header, div, p, h1, h2, h3, ul, li, figure, figcaption {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: 'Open Sans', sans-serif;
+   box-sizing: border-box;
+   background-color: #F0F4F8;
+   font-weight: 300;
+}
+
+header {
+   width: 100%;
+   min-height: 500px;
+   background-image: url('images/florence.jpg');
+   background-size: cover;
+   background-position: center;
+   color: #FFFFFF;
+   position: relative;
+}
+
+#topbar {
+   height: 72px;
+   padding: 0 16px 0 84px;
+   display: flex;
+   align-items: center;
+   background-image: url('images/logo.svg');
+   background-repeat: no-repeat;
+   background-size: 60px 60px;
+   background-position: 12px center;
+}
+
+#topbar ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+#topbar li {
+   display: inline-block;
+   margin-right: 24px;
+}
+
+#topbar a,
+#topbar a:visited {
+   color: #8662C7;
+   text-decoration: none;
+   font-weight: 600;
+   letter-spacing: 0.02em;
+}
+
+#topbar a:hover {
+   color: #51279B;
+   text-decoration: underline;
+}
+
+header > div {
+   margin-left: 84px;
+   margin-top: 18vh;
+   max-width: 640px;
+}
+
+header h1 {
+   font-size: 48px;
+   font-weight: 800;
+   line-height: 1.1;
+   color: #FFFFFF;
+   margin: 0 0 8px 0;
+}
+
+header h2 {
+   font-size: 48px;
+   font-weight: 700;
+   color: #FFFFFF;
+   margin: 0 0 16px 0;
+}
+
+header > div a {
+   display: inline-block;
+   background-color: #51279B;
+   color: #FFFFFF;
+   text-decoration: none;
+   font-weight: 100;
+   padding: 12px 18px;
+}
+
+header > div a:hover {
+   background-color: #8662C7
+}
+
+header > div p {
+   font-size: 24px;
+   margin-bottom: 10px;
+}
+
+.card {
+   display: inline-block;
+   vertical-align: top;
+   width: 30%;
+   min-width: 260px;
+   margin: 16px 1.5% 0 1.5%;
+   background-color: #FFFFFF;
+   overflow: hidden;
+}
+
+.card img {
+   width: 100%;
+   height: auto;
+   display: block;
+}
+
+.card > div {
+   padding: 10px;
+}
+
+.card h3 {
+   font-size: 14px;
+   font-weight: 600;
+   color: #2D3748;
+   margin: 0 0 4px 0;
+}
+
+.card .description {
+   font-size: 12px;
+   font-weight: 400;
+   color: #718096;
+   margin: 0 0 8px 0;
+}
+
+.card .social {
+   font-size: 10px;
+   color: #2D3748;
+   margin: 0;
+}
+
+.card .social .heart,
+.card .social .comment {
+   display: inline-block;
+   background-repeat: no-repeat;
+   background-size: 16px 16px;
+   padding-left: 20px;
+   margin-right: 12px;
+   line-height: 16px;
+}
+
+.card .social .heart {
+   background-image: url('images/heart.png');
+}
+
+.card .social .comment {
+   background-image: url('images/comment.svg');
+}
