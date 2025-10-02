@@ -4,7 +4,9 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HW#3 Responsive Web Design</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="script" href="script.js"/>
 </head>
 <body>
   <header class="header">
@@ -48,7 +50,7 @@
   </header>
 
   <main id="home" class="main">
-    <section class="hero" aria-label="Intro banner">
+    <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
           <h1>
@@ -57,106 +59,126 @@
           <p class="lede">
             A full package with multiple possibilities that will fit you perfectly. Start your Webflow website right now!
           </p>
-          <a href="#get-started" class="cta-round" aria-label="Get started">➜</a>
+          <a href="#get-started" class="cta-round" aria-label="Get started">
+            ➜
+          </a>
         </div>
         <figure class="hero-figure">
-          <!-- Replace with your asset: /assets/hero.jpg -->
-          <img src="assets/hero.jpg" alt="Smiling professional with tablet" />
+          <img src="images/business-man.png" alt="Smiling professional with tablet"/>
         </figure>
       </div>
 
-      <!-- Brands strip -->
       <div class="brands" aria-label="Trusted by">
         <div class="container brands-row">
-          <span class="brand">BRONX</span>
-          <span class="brand">BELFORT</span>
-          <span class="brand">shogun</span>
-          <span class="brand">RONDA</span>
-          <span class="brand">WAND</span>
-          <span class="brand">TATE</span>
+          <span class="brand">
+            BRONX
+          </span>
+          <span class="brand">
+            BELFORT
+          </span>
+          <span class="brand">
+            shogun
+          </span>
+          <span class="brand">
+            RONDA
+          </span>
+          <span class="brand">
+            WAND
+          </span>
+          <span class="brand">
+            TATE
+          </span>
         </div>
       </div>
     </section>
 
-    <!-- ================ Body: Team / About card ================= -->
-    <section id="about" class="team" aria-label="Our team">
+    <section id="about" class="team">
       <div class="container team-grid">
         <div class="team-copy">
-          <p class="eyebrow">Our Team</p>
+          <p class="eyebrow">
+            Our Team
+          </p>
           <h2>We make your business stronger</h2>
           <p class="body">
             Meet our team and who’s behind Walsh library creation.
           </p>
           <div class="actions">
-            <a href="#get-started" class="btn btn--primary">Get started →</a>
-            <a href="#learn" class="btn btn--link">Learn more →</a>
+            <a href="#get-started" class="btn btn-primary">
+              Get started →
+            </a>
+            <a href="#learn" class="btn btn-link">
+              Learn more →
+            </a>
           </div>
         </div>
         <figure class="team-figure">
-          <!-- Replace with your asset: /assets/team.jpg -->
-          <img src="assets/team.jpg" alt="Laughing person portrait" />
+          <img src="images/figure1.webp" alt="Laughing person portrait"/>
         </figure>
       </div>
     </section>
 
-    <!-- ================ Body: Features sample ================= -->
-    <section id="features" class="features" aria-label="Features">
-      <div class="container">
-        <h2 class="section-title">We take your results to the next level</h2>
-        <div class="feature-card">
-          <div class="feature-icon" aria-hidden="true">⬤</div>
-          <div class="feature-content">
-            <h3>Scale for any organization</h3>
-            <p>
-              Components and patterns designed to scale across teams. Build faster with a clean foundation,
-              accessible defaults, and purposeful spacing.
-            </p>
-          </div>
-          <div class="feature-visual">
-            <!-- Replace with your asset: /assets/phone.png -->
-            <img src="assets/phone.png" alt="App preview on phone" />
+    <section id="features" class="features">
+      <div class="container team-grid">
+        <div class="team-copy">
+          <p class="eyebrow">
+            Features
+          </p>
+          <h2>We take your results to the next level</h2>
+          <p class="body">
+            Scale for any organization
+          </p>
+          <div class="actions">
+            <a href="#get-started" class="btn btn-primary">
+              Get started →
+            </a>
+            <a href="#learn" class="btn btn-link">
+              Learn more →
+            </a>
           </div>
         </div>
+        <figure class="team-figure">
+          <img src="images/figure2.png" alt="Laughing person portrait"/>
+        </figure>
       </div>
     </section>
   </main>
 
-  <!-- ================= Footer ================= -->
-  <footer class="site-footer" role="contentinfo">
+  <footer class="site-footer">
     <div class="container footer-grid">
-      <a class="logo logo--footer" href="#">Walsh</a>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="#landing">Landing</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#team">Team Members</a>
-        <a href="#licenses">Licenses</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+      <a class="logo logo-footer" href="#">Walsh</a>
+      <nav class="footer-nav">
+        <a href="#landing">
+          Landing
+        </a>
+        <a href="#features">
+          Features
+        </a>
+        <a href="#about">
+          About
+        </a>
+        <a href="#team">
+          Team Members
+        </a>
+        <a href="#licenses">
+          Licenses
+        </a>
+        <a href="#blog">
+          Blog
+        </a>
+        <a href="#contact">
+          Contact
+        </a>
       </nav>
       <div class="social">
-        <a href="#" aria-label="Instagram">◐</a>
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="Twitter">t</a>
+        <a href="#" aria-label="Instagram" class="fa fa-instagram"></a>
+        <a href="#" aria-label="Facebook" class="fa fa-facebook"></a>
+        <a href="#" aria-label="LinkedIn" class="fa fa-linkedin"></a>
+        <a href="#" aria-label="Twitter" class="fa fa-twitter"></a>
       </div>
     </div>
     <div class="container copyright">
       <small>© 2024 Walsh components, All rights reserved — Designed for homework</small>
     </div>
   </footer>
-
-  <!-- Mobile nav toggle -->
-  <script>
-    const toggle = document.querySelector('.nav-toggle');
-    const list = document.querySelector('#nav-menu');
-    if (toggle && list) {
-      toggle.addEventListener('click', () => {
-        const open = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!open));
-        list.classList.toggle('open');
-      });
-    }
-  </script>
 </body>
 </html>
