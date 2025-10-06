@@ -194,6 +194,7 @@ body {
 .hero-figure {
   flex: 1 1 480px;
   min-width: 240px;
+  margin: 0;
 }
 
 .hero-figure img {
@@ -253,6 +254,10 @@ body {
 
 .team-copy .body {
   color:#40575a;
+}
+
+.team-figure {
+  margin: 0;
 }
 
 .team-figure img {
