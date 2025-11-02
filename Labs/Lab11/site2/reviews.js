@@ -26,7 +26,7 @@ const reviews = [
     name: 'bill anderson',
     job: 'the boss',
     img: 'https://images2.imgbox.com/8b/1c/vwWNTsCd_o.jpeg',
-    text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
+    text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic.',
   },
 ];
 
@@ -40,14 +40,42 @@ const showReview = (id) => {
   job.textContent = reviews[id].job;
   comment.textContent = reviews[id].text;
   personImage.src = reviews[id].img;
-}
+};
 
 const randomBtn = document.querySelector(".random-btn");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 
-randomBtn.addEventListener('click', () => {
-  let randomIndex = Math.floor(Math.random()*reviews.length);
+// include HTML review (Adam Smith) as first item
+const htmlReview = {
+  id: 0,
+  name: reviewAuthor.textContent.trim(),
+  job: job.textContent.trim(),
+  img: personImage.getAttribute("src"),
+  text: comment.textContent.trim(),
+};
 
-  return showReview(randomIndex);
+// add it (Adam Smith review) to start if exists
+if (htmlReview.name && htmlReview.text) {
+  reviews.unshift(htmlReview);
+}
+
+// navigation logic (Option B: loop continuously)
+let currentIndex = 0;
+showReview(currentIndex);
+
+randomBtn.addEventListener('click', () => {
+  let randomIndex = Math.floor(Math.random() * reviews.length);
+  currentIndex = randomIndex;
+  showReview(currentIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % reviews.length;
+  showReview(currentIndex);
+});
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+  showReview(currentIndex);
 });
