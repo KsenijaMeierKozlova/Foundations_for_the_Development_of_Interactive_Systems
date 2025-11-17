@@ -14,6 +14,7 @@ let randomMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
 } */
 
 const mealsElement = document.getElementById("meals");
+const favourites = document.querySelector(".favourites");
 
 const getRandomMeal = async () => {
     const resp = await fetch(randomMealURL);
@@ -53,6 +54,7 @@ const addMeal = (mealData) => {
     })
     
     mealsElement.appendChild(meal);
+    updateFavouriteMeals(meal);
 }
 
 const addMealToLocalStorage = (mealId) => {
@@ -70,4 +72,42 @@ const getMealsFromLocalStorage = () => {
     const mealIds = JSON.parse(localStorage.getItem('mealIds'));
 
     return mealIds === null? [] : mealIds;
+}
+
+const updateFavouriteMeals = async () => {
+    favouriteMeal.innerHTML = "";
+    const mealIds = getMealsFromLocalStorage();
+
+    let meals = [];
+
+    mealIds.forEach(async (meal) => {
+        let tmpMeal = await getMealByID(meal);
+        // meals.push(tmpMeal);
+
+        addMealToFavourites(tmpMeal);
+    });
+}
+
+const getMealByID = async (id) => {
+    const resp = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + id);
+    const data = await resp.json();
+    const output = data.meals[0];
+
+    return output;
+};
+
+const addMealToFavourites = (mealData) => {
+    const favouriteMeal = document.createElement('li');
+
+    favouriteMeal.innerHTML = `<img id="fav-img" src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+                            <span>${mealData.strMeal}</span>
+                            <button class="clear"><i class="fas fa-window-close"></i></button>`;
+    
+    const clearBtn = favouriteMeal.querySelector(".clear");
+    clearBtn.addEventListener("click", () => {
+        removeMealFromLocalStorage(mealData.idMeal);
+        updateFavouriteMeals();
+    });
+
+    favourites.appendChild(favouriteMeal);
 }
