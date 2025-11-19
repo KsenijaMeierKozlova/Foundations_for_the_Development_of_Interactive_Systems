@@ -1,20 +1,15 @@
 /* 1 - Link to get a random meal: https://www.themealdb.com/api/json/v1/1/random.php */
-
 /* 2 - Link to lookup a specific meal with an id: https://www.themealdb.com/api/json/v1/1/lookup.php?i= */
-
 /* 3 - Link to search for meals using a keyword: https://www.themealdb.com/api/json/v1/1/search.php?s= */
 
 let randomMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
-
-/* const getRandomMeal = () => {
-    fetch(randomMealURL)
-    .then((item) => item.json())
-    .then((data) => console.log(data.meals[0]))
-    .catch((err) => console.log("There was issue in the fetching ", err));
-} */
+let mealURL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+let searchURL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
 const mealsElement = document.getElementById("meals");
-const favourites = document.querySelector(".favourites");
+const favorites = document.querySelector(".favorites");
+const searchTerm = document.querySelector("#search-term");
+const searchBtn = document.querySelector("#search");
 
 const getRandomMeal = async () => {
     const resp = await fetch(randomMealURL);
@@ -22,92 +17,149 @@ const getRandomMeal = async () => {
     const randomMeal = data.meals[0];
 
     mealsElement.innerHTML = "";
-    
-    addMeal(randomMeal);
+    addMeal(randomMeal, true);
 }
 
-getRandomMeal();
-
-const addMeal = (mealData) => {
+const addMeal = (mealData, random = false) => {
     const meal = document.createElement('div');
     meal.classList.add("meal");
 
-    meal.innerHTML = `<div class="meal-header">
-                        <span class="random">Meal of the Day</span>
-                        <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
-                    </div>
-                    <div class="meal-body">
-                        <h3>${mealData.strMeal}</h3>
-                            <button class="fav-btn">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>`;
-    
-    let favouriteButton = meal.querySelector(".fav-btn");
-    favouriteButton.addEventListener("click", () => {
-        if(favouriteButton.classList.contains('active')) {
-            favouriteButton.classList.remove('active')
+    meal.innerHTML = `
+        <div class="meal-header">
+            ${random?`<span class="random">Meal of the Day</span>`: ""}
+            <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+        </div>
+        <div class="meal-body">
+            <h3>${mealData.strMeal}</h3>
+            <button class="fav-btn">
+                <i class="fas fa-heart"></i>
+            </button>
+        </div>`;
+
+    let favoriteButton = meal.querySelector(".fav-btn");
+
+    favoriteButton.addEventListener("click", () => {
+        if (favoriteButton.classList.contains('active')) {
+            favoriteButton.classList.remove('active');
+            removeMealFromLocalStorage(mealData.idMeal);
         } else {
-            favouriteButton.classList.add('active');
+            favoriteButton.classList.add('active');
             addMealToLocalStorage(mealData.idMeal);
         }
-    })
-    
+
+        updateFavoriteMeals();
+    });
+
     mealsElement.appendChild(meal);
-    updateFavouriteMeals(meal);
+
+    const mealHeader = meal.querySelector('.meal-header');
+
+    mealHeader.addEventListener('click', () => {
+        OpenMealDetailsPage();
+    });
+
+
 }
 
 const addMealToLocalStorage = (mealId) => {
     const mealIds = getMealsFromLocalStorage();
-
-    localStorage.setItem('mealId', JSON.stringify([...mealIds, mealId]));
+    localStorage.setItem('mealIds', JSON.stringify([...mealIds, mealId]));
 }
 
 const removeMealFromLocalStorage = (mealId) => {
     const mealIds = getMealsFromLocalStorage();
-    localStorage.setItem('mealIds', JSON.stringify(mealIds.filter(id => id != mealId)));
+    localStorage.setItem('mealIds', JSON.stringify(mealIds.filter(id => id !== mealId))
+    );
 }
 
 const getMealsFromLocalStorage = () => {
     const mealIds = JSON.parse(localStorage.getItem('mealIds'));
 
-    return mealIds === null? [] : mealIds;
+    return mealIds === null ? [] : mealIds;
 }
 
-const updateFavouriteMeals = async () => {
-    favouriteMeal.innerHTML = "";
+const updateFavoriteMeals = () => {
+    favorites.innerHTML = "";
     const mealIds = getMealsFromLocalStorage();
 
-    let meals = [];
-
-    mealIds.forEach(async (meal) => {
-        let tmpMeal = await getMealByID(meal);
-        // meals.push(tmpMeal);
-
-        addMealToFavourites(tmpMeal);
+    mealIds.forEach(async (mealId) => {
+        let tmpMeal = await getMealByID(mealId);
+        addMealToFavorites(tmpMeal);
     });
 }
 
 const getMealByID = async (id) => {
-    const resp = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + id);
+    const resp = await fetch(mealURL + id);
     const data = await resp.json();
     const output = data.meals[0];
 
     return output;
 };
 
-const addMealToFavourites = (mealData) => {
-    const favouriteMeal = document.createElement('li');
+const addMealToFavorites = (mealData) => {
+    const favoriteMeal = document.createElement('li');
 
-    favouriteMeal.innerHTML = `<img id="fav-img" src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
-                            <span>${mealData.strMeal}</span>
-                            <button class="clear"><i class="fas fa-window-close"></i></button>`;
-    
-    const clearBtn = favouriteMeal.querySelector(".clear");
+    favoriteMeal.innerHTML = `
+        <img id="fav-img" src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+        <span>${mealData.strMeal}</span>
+        <button class="clear"><i class="fas fa-window-close"></i></button>
+    `;
+
+    const clearBtn = favoriteMeal.querySelector('.clear');
     clearBtn.addEventListener("click", () => {
         removeMealFromLocalStorage(mealData.idMeal);
-        updateFavouriteMeals();
+        updateFavoriteMeals();
     });
 
-    favourites.appendChild(favouriteMeal);
+    favorites.appendChild(favoriteMeal);
+
+    const favImg = favoriteMeal.querySelector('#fav-img');
+
+    favImg.addEventListener('click', () => {
+        OpenMealDetailsPage();
+    })
 }
+
+const initMain = () => {
+    getRandomMeal();
+    updateFavoriteMeals();
+
+    searchBtn.addEventListener('click', () => {
+        const searchWord = searchTerm.value;
+        searchForMeal(searchWord);
+    });
+
+    searchTerm.addEventListener('input', () => {
+        const searchWord = searchTerm.value;
+        searchForMeal(searchWord);
+    });
+
+    // Displaying the searched meals
+    const searchForMeal = async (word) => {
+        const searchResults = await getMealsBySearch(word);
+
+        mealsElement.innerHTML = "";
+        if (searchResults) {
+            searchResults.forEach((meal) => addMeal(meal));
+        }
+    }
+
+    // Searching the meals
+    const getMealsBySearch = async (word) => {
+        const resp = await fetch(searchURL + word);
+        const data = await resp.json();
+        const output = data.meals;
+
+        return output;
+    }
+}
+
+
+const OpenMealDetailsPage = (meal) => {
+    window.open("details.html?mealId=" + meal.idMeal, "_self")
+}
+
+const initDetailsPage = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let mealId = urlParams.get('mealId');
+};
