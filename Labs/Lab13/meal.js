@@ -55,7 +55,7 @@ const addMeal = (mealData, random = false) => {
     const mealHeader = meal.querySelector('.meal-header');
 
     mealHeader.addEventListener('click', () => {
-        OpenMealDetailsPage();
+        OpenMealDetailsPage(mealData);
     });
 
 
@@ -155,11 +155,40 @@ const initMain = () => {
 }
 
 
-const OpenMealDetailsPage = (meal) => {
-    window.open("details.html?mealId=" + meal.idMeal, "_self")
+const OpenMealDetailsPage = (mealData) => {
+    window.open("details.html?mealId=" + mealData.idMeal, "_self")
 }
 
 const initDetailsPage = () => {
     const urlParams = new URLSearchParams(window.location.search);
     let mealId = urlParams.get('mealId');
+
+    showMealsDetails(mealId);
 };
+
+const showMealsDetails = async (mealId) => {
+    const tmpMeal = await getMealByID(mealId);
+
+    const ingredients = [];
+
+    for (let i = 1; i <= 20; i++) {
+        if (tmpMeal['strIngredient' + i]) {
+            ingredients.push(`${tmpMeal['strIngredient' + i]}/${tmpMeal['strMeasure' + i]}`)
+        }
+    }
+
+    const mealDetailsContainer = document.querySelector('.meal-container');
+    mealDetailsContainer.innerHTML = `<a href="meal.html">Home</a>
+            <div class="meal-info">
+                <div>
+                    <h1>${tmpMeal.strMeal}</h1>
+                    <img src="${tmpMeal.strMealThumb}" alt="${tmpMeal.strMeal}">
+                </div>
+                <div>
+                    <p>${tmpMeal.strInstructions}</p>
+                        <ul>
+                            ${ingredients.map(item => `<li>${item}</li>`).join("")}
+                        </ul>
+                </div>
+            </div>`;
+}
