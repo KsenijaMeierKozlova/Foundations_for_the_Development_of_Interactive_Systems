@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MoodSpace — Your saved inspirations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-favorites">
+
+<header class="header">
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="favorites.html">Favorites</a>
+    <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<main class="main-wrapper">
+  <h1 class="favorites-heading">Your Saved Inspirations</h1>
+
+  <!-- EMPTY STATE -->
+  <section id="favorites-empty">
+    <p class="empty-text">
+      You haven’t saved anything yet. Start exploring moods.
+    </p>
+    <a href="moods.html" class="btn btn-primary">Explore moods</a>
+  </section>
+
+  <!-- FULL STATE -->
+  <section id="favorites-full">
+    <div class="favorites-grid">
+
+      <article class="favorite-card">
+        <img src="assets/images/calm.jpg" alt="Calm mood">
+        <div class="favorite-card-title">Calm Mood</div>
+        <p class="favorite-quote">
+          “Nothing can bring you peace but yourself” — Ralph Waldo Emerson
+        </p>
+        <div class="favorite-delete">🗑 delete</div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
