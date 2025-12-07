@@ -1,5 +1,6 @@
-import { logout } from './auth.js';
-import { readEntries } from '.firestore.js';
+
+import {logout} from './auth.js';
+import { readEntries } from './firestore.js';
 
 const logoutBtn = document.querySelector("#logout");
 const messageDiv = document.getElementById("message");
@@ -9,9 +10,9 @@ logoutBtn.addEventListener('click', async ()=> {
         await logout();
     }
     catch (error) {
-        console.error("Log out failed", error);
-        messageDiv.textContent = "Log out failed: " + error.message;
+        console.error("Logout failed", error);
+        messageDiv.textContent = "Logout failed: " + error.message;
     }
 })
 
-const results = 
+const results = await readEntries();

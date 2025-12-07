@@ -16,17 +16,16 @@ signupBtn.addEventListener("click", async (e)=>{
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    // console.log("Sign Up Clicked!", email, password);
+    //console.log("Sign Up Clicked!", email, password);
     try{
         const user = await signup(email, password);
-        showMessage("Sign up successful. Welcome " + user.email);
-    
+        showMessage("signup successful. Welcome " + user.email);
     }
     catch (error){
         showMessage(error.message, true);
     }
     
-    // console.log(user);
+    //console.log(user);
 })
 
 signinBtn.addEventListener('click', async (e)=>{
@@ -37,7 +36,7 @@ signinBtn.addEventListener('click', async (e)=>{
 
     try {
         const user = await login(email, password);
-        showMessage("Log in successful. Welcome " + user.email);
+        showMessage("Login successful. Welcome " + user.email);
     }
     catch (error) {
         showMessage(error.message, true);

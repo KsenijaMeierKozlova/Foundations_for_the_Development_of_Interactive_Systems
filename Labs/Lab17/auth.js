@@ -1,10 +1,11 @@
-// const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 import {  createUserWithEmailAndPassword,
           signInWithEmailAndPassword,
           signOut,
-          onAuthStateChange } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-import { auth } from './firebase.js';
+          onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { auth } from './firebase.js'
+
 
   export const signup = async (email, password) => {
     try {
