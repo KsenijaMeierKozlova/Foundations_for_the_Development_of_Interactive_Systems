@@ -2,102 +2,166 @@
 
 A personal inspiration platform that matches visuals and quotes to your mood
 
-MoodSpace is a small full-stack web application created as part of the Foundations for the Development of Interactive Systems course.
-Its goal is to help users explore calming or motivating content based on their current mood, save their favourite inspirations, and create a personal mood space.
+MoodSpace is a small full-stack web application created as part of the
+Foundations for the Development of Interactive Systems course.
+
+The goal of the project is to help users explore calming or motivating content based on their current mood, save favourite inspirations, and build a personal mood-based inspiration space.
 
 📄 Project Overview
 
-MoodSpace is built around a simple idea: choose a mood → explore images and quotes → save what resonates.
+MoodSpace is built around a simple interaction flow:
 
-The project consists of multiple interconnected HTML pages with a shared visual style, responsive layout, and consistent navigation.
-It uses a gradient-based aesthetic with soft colors and expressive typography to support the emotional theme of the site.
+Choose a mood → explore images and quotes → save what resonates
 
-This repository contains the Phase 2 submission, which includes:
-1. full HTML page structure
-2. responsive CSS layouts
-3. navigation system
-4. placeholder content for future API integration
+The application consists of multiple interconnected HTML pages with a shared visual style, responsive layout, and consistent navigation.
+A gradient-based aesthetic, soft colour palette, and expressive typography are used to support the emotional and reflective nature of the experience.
 
-In Phase 3, Firebase and public APIs will be connected.
+In its final version (Phase 3), MoodSpace is implemented as a functional full-stack web application with:
 
-📁 Structure
+- user authentication
+- real-time database integration
+- dynamic content from public APIs
+- client-side interactivity powered by JavaScript
+
+🔐 Core Features
+
+1. User registration and login (Firebase Authentication)
+2. Mood-based dynamic content (images + quotes)
+3. Saving and managing favourites
+4. Real-time updates without page reloads
+5. Conditional UI based on authentication status
+6. Responsive design across devices
+
+📁 Project Structure
 
 moodspace/
 │
 ├── index.html          # Homepage
 ├── moods.html          # Mood selection
-├── mood.html           # Single mood view (dynamic/placeholder)
-├── favorites.html      # Saved inspirations
-├── login.html          # Login form
-├── signup.html         # Registration form
+├── mood.html           # Dynamic mood view
+├── favorites.html      # Saved inspirations (protected)
+├── login.html          # Login page
+├── signup.html         # Registration page
 ├── about.html          # Project information
 │
 ├── css/
 │   └── styles.css      # Global styling
 │
 ├── js/
-│   └── script.js       # Base JS (future: API, Firebase)
+│   ├── firebase-init.js  # Firebase configuration
+│   ├── auth.js           # Authentication & navigation logic
+│   ├── mood.js           # API integration & mood logic
+│   └── favorites.js      # Firestore favourites logic
 │
 ├── assets/
-    ├── images/         # Mood images / placeholders
-    ├── icons/          # SVG icons
-    └── gradients/      # Background gradient assets
+│   └── fonts/          # Custom typography
 
 🖥 Pages Included
 
 1. Homepage
-- Hero section
-- Project tagline
-- “Get Started” CTA
+- Project introduction
+- Main tagline
+- “Get Started” call-to-action
 - Navigation to About and Login
 
 2. Mood Selection
-- Six mood categories (Calm, Energetic, Focused, Romantic, Creative, Melancholy)
-- Simple button-based layout
-- Leads to mood detail page
+- Six mood categories: Calm, Energetic, Focused, Romantic, Creative, Melancholy
+- Button-based interaction
+- Leads to dynamic mood view
 
 3. Mood Detail Page
-- Background image representing the mood
-- Mood title + inspirational quote
-- “Add to Favorites” button
-- “Back to Moods” navigation
+- Dynamically loaded background image (Unsplash API)
+- Mood-specific inspirational quote (API Ninjas)
+- “Add to Favorites” action
+- Conditional messaging for non-authenticated users
 
-4. Favorites / Dashboard
-- Grid of saved inspirations
-- Delete option
-- Empty state when no items are saved
+4. Favorites Page (Dashboard)
+- User-specific saved inspirations
+- Real-time Firestore updates
+- Search, filter, and sort functionality
+- Empty state handling
+- Delete option for saved items
+- Accessible only to authenticated users
 
 5. Login & Sign Up
-- Clean, readable forms
-- Gradient backgrounds
-- Links between login/signup flows
+- Firebase Authentication (email & password)
+- Error handling and validation
+- Seamless navigation between flows
 
 6. About Page
-- Brief project explanation
-- API & Firebase credits
+- Project description
+- Technology and API credits
+
+🔄 Dynamic Functionality
+
+MoodSpace includes multiple advanced JavaScript-based interaction features:
+
+1. Live search within favourites
+2. Filtering by mood and content type
+3. Sorting by creation date
+4. Real-time database updates via Firestore onSnapshot
+5. Dynamic background updates using JavaScript
+6. Conditional UI rendering based on authentication state
+
+All interactions occur without page reloads.
+
+🌐 Public APIs Used
+
+Unsplash API
+
+- Endpoint: /search/photos
+- Purpose: Retrieve mood-based background images
+- Integration: Dynamic image loading based on selected mood
+
+API Ninjas – Quotes API (v2)
+
+- Endpoint: /v2/randomquotes
+- Purpose: Retrieve inspirational quotes by category
+- Integration: Quotes are matched to mood categories and displayed dynamically
+
+Error handling and fallbacks implemented
+
+🔥 Firebase Integration
+
+Firebase Authentication
+
+1. Email/password login and registration
+2. Authentication state monitoring
+3. Conditional access to protected pages (Favorites)
+
+Firestore Database
+
+Collections used:
+
+- users
+- favorites
+
+Stored data includes:
+
+- user ID
+- mood
+- image URL
+- quote text and author
+- creation timestamp
+
+Each user can only access and manage their own saved data.
 
 📱 Responsive Design
 
-The layout adapts across:
-1. Desktop (≥1200px) — full multi-column layouts
-2. Tablet (~768px) — simplified grids
-3. Mobile (≤480px) — single-column content + stacked UI
+The layout adapts across different screen sizes:
 
-🎨 Design Decisions
+- Desktop (≥1200px): full grid layouts
+- Tablet (~768px): simplified grids
+- Mobile (≤480px): single-column layout with stacked UI
 
-A consistent gradient theme is used across pages to support the emotional concept of “mood”. Typography combines expressive headings with clean body text for readability.
+Media queries, Flexbox, and CSS Grid are used to ensure usability across devices.
 
 🔧 Technologies Used
 
 1. HTML5
 2. CSS3 (Flexbox, Grid, media queries)
-3. Vanilla JS (structure only)
-
-Upcoming in Phase 3:
-
-1. Firebase Authentication
-2. Firestore Database
-3. Unsplash API for images
-4. Quotable API for quotes
-
-📬 Author: Ksenija Meier-Kozlova | Tallinn University — Human-Computer Interaction
+3. Vanilla JavaScript (ES modules)
+4. Firebase Authentication
+5. Firestore Database
+6. Unsplash API
+7. API Ninjas (Quotes API v2)

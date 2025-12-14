@@ -5,6 +5,7 @@
   <title>MoodSpace — Choose your mood</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/auth.js" defer></script>
 </head>
 <body class="bg-moods">
 
@@ -12,6 +13,7 @@
   <nav class="nav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
+    <a href="favorites.html" class="is-auth-only">Favorites</a>
     <a href="login.html">Login / Sign Up</a>
   </nav>
 </header>
@@ -23,12 +25,12 @@
   </p>
 
   <div class="mood-buttons">
-    <a class="btn" href="mood.html">Calm 🕊</a>
-    <a class="btn" href="mood.html">Energetic ✨</a>
-    <a class="btn" href="mood.html">Focused ⚙</a>
-    <a class="btn" href="mood.html">Romantic 💕</a>
-    <a class="btn" href="mood.html">Creative ✨</a>
-    <a class="btn" href="mood.html">Melancholy ☁</a>
+    <a class="btn" href="mood.html?mood=calm">Calm 🕊</a>
+    <a class="btn" href="mood.html?mood=energetic">Energetic ✨</a>
+    <a class="btn" href="mood.html?mood=focused">Focused ⚙</a>
+    <a class="btn" href="mood.html?mood=romantic">Romantic 💕</a>
+    <a class="btn" href="mood.html?mood=creative">Creative ✨</a>
+    <a class="btn" href="mood.html?mood=melancholy">Melancholy ☁</a>
   </div>
 </main>
 

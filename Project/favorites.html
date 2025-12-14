@@ -5,45 +5,72 @@
   <title>MoodSpace — Your saved inspirations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/auth.js" defer></script>
+  <script type="module" src="js/guard.js" defer></script>
+  <script type="module" src="js/favorites.js" defer></script>
 </head>
+
 <body class="bg-favorites">
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="favorites.html" class="is-auth-only">Favorites</a>
+      <a href="login.html">Login / Sign Up</a>
+    </nav>
+  </header>
 
-<header class="header">
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="favorites.html">Favorites</a>
-    <a href="login.html">Logout</a>
-  </nav>
-</header>
+  <main class="main-wrapper">
+    <section class="glass-card glass-card--wide">
+      <h1 class="favorites-heading">Your Saved Inspirations</h1>
 
-<main class="main-wrapper">
-  <h1 class="favorites-heading">Your Saved Inspirations</h1>
+      <div class="favorites-controls">
+        <input
+          id="favSearch"
+          class="fav-input"
+          type="text"
+          placeholder="Search favorites…"
+          aria-label="Search favorites"
+        >
 
-  <!-- EMPTY STATE -->
-  <section id="favorites-empty">
-    <p class="empty-text">
-      You haven’t saved anything yet. Start exploring moods.
-    </p>
-    <a href="moods.html" class="btn btn-primary">Explore moods</a>
-  </section>
+        <select id="favType" class="fav-select" aria-label="Filter by type">
+          <option value="all">All</option>
+          <option value="image">Images</option>
+          <option value="quote">Quotes</option>
+        </select>
 
-  <!-- FULL STATE -->
-  <section id="favorites-full">
-    <div class="favorites-grid">
+        <select id="favMood" class="fav-select" aria-label="Filter by mood">
+          <option value="all">All moods</option>
+          <option value="calm">Calm</option>
+          <option value="energetic">Energetic</option>
+          <option value="focused">Focused</option>
+          <option value="romantic">Romantic</option>
+          <option value="creative">Creative</option>
+          <option value="melancholy">Melancholy</option>
+        </select>
 
-      <article class="favorite-card">
-        <img src="assets/images/calm.jpg" alt="Calm mood">
-        <div class="favorite-card-title">Calm Mood</div>
-        <p class="favorite-quote">
-          “Nothing can bring you peace but yourself” — Ralph Waldo Emerson
-        </p>
-        <div class="favorite-delete">🗑 delete</div>
-      </article>
-    </div>
-  </section>
+        <select id="favSort" class="fav-select" aria-label="Sort favorites">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+      </div>
 
-</main>
+      <!-- EMPTY STATE -->
+      <section id="favorites-empty" class="favorites-state" style="display:none;">
+        <p class="empty-text">You haven’t saved anything yet. Start exploring moods.</p>
+        <a href="moods.html" class="btn btn-primary">Explore moods</a>
+      </section>
 
+      <!-- FULL STATE -->
+      <section id="favorites-full" class="favorites-state" style="display:none;">
+        <div class="favorites-grid" id="favoritesGrid"></div>
+      </section>
+
+      <!-- LOADING STATE (optional but nice) -->
+      <p id="favoritesLoading" class="favorites-loading" aria-live="polite">
+        Loading your favorites…
+      </p>
+    </section>
+  </main>
 </body>
 </html>
