@@ -185,6 +185,14 @@ body {
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
 }
 
+.glass-card--buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
 /* Favorites page additions */
 .glass-card--wide {
     max-width: 1200px;
@@ -340,6 +348,37 @@ input::placeholder {
 
 .form-helper a {
     color: inherit;
+}
+
+#signupError {
+    font-size: 12px;
+    color: #c33;
+    margin: 10px 0 0;
+    display: none;
+}
+
+.form-additional-btn {
+    margin-top: 18px;
+}
+
+#authHint {
+    margin-top: -35px;
+    font-size: 12px;
+    color: #c33;
+    display: none;
+}
+
+#loadHint {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+#loginError {
+    font-size: 12px;
+    color: #c33;
+    margin: 10px 0 0;
+    display: none;
 }
 
 @media (max-width: 900px) {
